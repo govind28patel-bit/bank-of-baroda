@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Govind Patel: Bank of Baroda website usability testing and redesign case study.">
+<meta property="og:title" content="Bank of Baroda Redesign | Govind Patel">
+<meta property="og:image" content="w/hero_mock.webp">
+<style>body{margin:0}[hidden]{display:none!important}</style>
+<title>Bank of Baroda Redesign</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Lato:ital,wght@0,900;1,400;1,700&display=swap">
+<style>
+/* Layout: one long scroll-told case study. Deck rhythm is kept: navy night bands, BoB-orange bands, warm paper bands. Italic Lato headings carry the deck's orbit ellipse. */
+:root{
+  --navy:#040A22; --navy-2:#0C1538; --orange:#F26522; --orange-deep:#D9531A; --orange-soft:#FDE6D8;
+  --paper:#FBF7F2; --ink:#141629; --muted:#5E6178; --line:#E7DED5; --indigo:#272C6B; --white:#FFFFFF;
+  --ok:#1F9D63;
+  --display:"Lato","Helvetica Neue",Arial,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gut:max(16px, env(safe-area-inset-left, 0px));
+  --gutR:max(16px, env(safe-area-inset-right, 0px));
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--navy)}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1200px;margin:0 auto;padding-left:var(--gut);padding-right:var(--gutR)}
+section{padding-block:clamp(64px,9vw,120px);overflow-x:clip}
+html{overflow-x:clip}
+.heur-img{background:#0B0B0F}
+.band-navy{background:var(--navy);color:var(--white)}
+.band-orange{background:var(--orange);color:var(--white)}
+.band-paper{background:var(--paper);color:var(--ink)}
+.band-white{background:var(--white);color:var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
+.band-orange .eyebrow{color:var(--navy)}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+.lede{font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:62ch;color:var(--muted)}
+.band-navy .lede{color:#B9BED6}
+.band-orange .lede{color:#FFF1E8}
+
+/* orbit heading — the deck's signature */
+.orbit{position:relative;display:inline-block;font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(2.2rem,5.4vw,4rem);line-height:1.05;letter-spacing:-.01em;padding:.25em .4em}
+.orbit svg{position:absolute;inset:-6% -8%;width:116%;height:112%;overflow:visible;pointer-events:none}
+.orbit ellipse{fill:none;stroke:var(--orange);stroke-width:3;stroke-dasharray:1000;stroke-dashoffset:0;transition:stroke-dashoffset 1.6s cubic-bezier(.6,.1,.2,1)}
+.orbit circle{fill:var(--orange);transition:opacity .4s 1.3s}
+.band-orange .orbit ellipse{stroke:var(--navy)}
+.band-orange .orbit circle{fill:var(--navy)}
+.orbit.pre ellipse{stroke-dashoffset:1000}
+.orbit.pre circle{opacity:0}
+.sec-head{display:grid;gap:18px;justify-items:start;margin-bottom:clamp(36px,5vw,56px)}
+.sec-head.center{justify-items:center;text-align:center}
+.sec-head.center .lede{margin-inline:auto}
+
+/* reveal */
+.rv{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.pre{opacity:0;transform:translateY(28px)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(4,10,34,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--white);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
+.brand{font-family:var(--display);font-weight:900;font-size:1.05rem;text-decoration:none;letter-spacing:.01em;white-space:nowrap}
+.brand span{color:var(--orange)}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:.88rem}
+.nav ul a{text-decoration:none;color:#C7CBE0;transition:color .2s}
+.nav ul a:hover,.nav ul a.on{color:var(--white)}
+.nav ul a.on{box-shadow:0 2px 0 var(--orange)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--body);font-weight:700;font-size:.95rem;text-decoration:none;border-radius:999px;padding:12px 22px;border:2px solid transparent;cursor:pointer;transition:transform .2s,background .2s,color .2s,border-color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--orange);color:var(--white)}
+.btn-primary:hover{background:var(--orange-deep)}
+.btn-ghost{border-color:rgba(255,255,255,.35);color:var(--white);background:transparent}
+.btn-ghost:hover{border-color:var(--white)}
+.btn-sm{padding:8px 16px;font-size:.85rem}
+.progress{position:absolute;left:0;bottom:-1px;height:3px;background:var(--orange);width:0}
+@media (max-width:900px){.nav ul{display:none}}
+
+/* hero */
+.hero{position:relative;background:var(--navy);color:var(--white);overflow:hidden;padding-block:clamp(56px,8vw,110px) clamp(48px,6vw,80px)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.95}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero h1{font-family:var(--display);font-weight:900;font-size:clamp(2.4rem,5.6vw,4.4rem);line-height:1.02;letter-spacing:-.015em}
+.hero .tag{font-family:var(--display);font-weight:900;color:var(--orange);font-size:clamp(1.1rem,2vw,1.6rem);letter-spacing:.04em;margin-top:18px}
+.hero .lede{margin-top:22px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-copy>*{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy>*:nth-child(2){animation-delay:.12s}.hero-copy>*:nth-child(3){animation-delay:.24s}.hero-copy>*:nth-child(4){animation-delay:.36s}.hero-copy>*:nth-child(5){animation-delay:.48s}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+.tilt{perspective:1200px;animation:rise 1.1s .3s cubic-bezier(.2,.7,.2,1) both}
+.tilt-inner{transition:transform .25s ease-out;transform-style:preserve-3d;filter:drop-shadow(0 30px 50px rgba(242,101,34,.28));animation:float 7s ease-in-out infinite}
+.tilt-inner img{width:100%;height:auto}
+.facts{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;margin-top:clamp(40px,6vw,72px)}
+.facts div{background:rgba(4,10,34,.82);padding:18px 20px;min-width:0}
+.facts dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.facts dd{margin:0;font-size:.95rem;color:#E4E6F2}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.facts{grid-template-columns:1fr}}
+
+/* tldr */
+.tldr{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tldr article{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;gap:12px;align-content:start;min-width:0}
+.tldr h3{font-family:var(--display);font-style:italic;font-weight:700;font-size:1.45rem}
+.tldr .k{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.tldr p{color:var(--muted)}
+@media (max-width:860px){.tldr{grid-template-columns:1fr}}
+
+/* context */
+.ctx{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,48px);align-items:center}
+.ctx .photo{border-radius:24px;overflow:hidden;aspect-ratio:16/11;max-width:100%}
+.ctx .photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 1.4s ease}
+.ctx .photo.in img{transform:scale(1)}
+.ctx p+p{margin-top:16px}
+.ctx .facts-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.chip{font-family:var(--mono);font-size:.78rem;padding:7px 12px;border-radius:999px;background:var(--orange-soft);color:#8A3410}
+@media (max-width:860px){.ctx{grid-template-columns:1fr}}
+.goal{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,5vw,72px);align-items:center}
+.goal h2{font-family:var(--display);font-weight:900;font-size:clamp(2.4rem,6vw,4.6rem);line-height:.98;text-transform:uppercase}
+.goal p{font-size:clamp(1.15rem,2vw,1.5rem);font-style:italic;line-height:1.5;max-width:44ch}
+@media (max-width:860px){.goal{grid-template-columns:1fr}}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:s;position:relative}
+.steps li{list-style:none;padding:22px 20px 22px 0;border-top:2px solid var(--line);position:relative;counter-increment:s;min-width:0}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:.8rem;color:var(--orange);display:block;margin-bottom:8px}
+.steps li::after{content:"";position:absolute;top:-2px;left:0;height:2px;width:0;background:var(--orange);transition:width .9s cubic-bezier(.6,.1,.2,1)}
+.steps.in li::after{width:100%}
+.steps li:nth-child(2)::after{transition-delay:.15s}.steps li:nth-child(3)::after{transition-delay:.3s}.steps li:nth-child(4)::after{transition-delay:.45s}.steps li:nth-child(5)::after{transition-delay:.6s}.steps li:nth-child(6)::after{transition-delay:.75s}.steps li:nth-child(7)::after{transition-delay:.9s}.steps li:nth-child(8)::after{transition-delay:1.05s}
+.steps b{display:block;font-size:1.02rem}
+.steps span{color:var(--muted);font-size:.9rem}
+.steps a{text-decoration:none}
+.steps a:hover b{color:var(--orange)}
+.steps ol{display:contents}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+
+/* competitors */
+.comp{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.comp figure{margin:0;display:grid;gap:12px;min-width:0}
+.shot{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--white);box-shadow:0 18px 40px -24px rgba(20,22,41,.35);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s}
+.comp figure:hover .shot{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 30px 50px -26px rgba(20,22,41,.45)}
+.comp figcaption{font-family:var(--display);font-weight:900;font-size:1.35rem;text-align:center}
+.diffs{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:56px}
+.diff{display:grid;gap:10px;align-content:start;padding:24px;border-radius:18px;background:var(--white);border:1px solid var(--line);transition:transform .3s,border-color .3s;min-width:0}
+.diff:hover{transform:translateY(-4px);border-color:var(--orange)}
+.diff svg{width:44px;height:44px;stroke:var(--orange);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.diff h3{font-family:var(--display);font-style:italic;font-weight:700;font-size:1.25rem}
+.diff p{font-size:.95rem;color:var(--muted)}
+.sub-h{font-family:var(--display);font-style:italic;font-weight:400;color:var(--orange);font-size:clamp(1.6rem,3vw,2.2rem);margin-top:72px}
+@media (max-width:860px){.comp{grid-template-columns:1fr}.diffs{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.diffs{grid-template-columns:1fr}}
+
+/* questions */
+.qa{position:relative;background:var(--navy);color:var(--white);overflow:hidden}
+.qa-bg{position:absolute;inset:0;background:url("w/qa_bg.webp") center 70%/cover no-repeat;opacity:.55;transform:scale(1.15);will-change:transform}
+.qa::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,10,34,.9),rgba(4,10,34,.35) 45%,rgba(4,10,34,.85))}
+.qa .wrap{position:relative;z-index:1}
+.qlist{display:grid;gap:14px;max-width:920px;margin:0 auto;padding:0;list-style:none}
+.qlist li{display:grid;gap:0}
+.qbtn{display:grid;grid-template-columns:56px 1fr 28px;align-items:center;gap:16px;width:100%;text-align:left;font:inherit;color:var(--white);padding:16px 22px;border:1px solid rgba(255,255,255,.4);border-radius:12px;background:rgba(255,255,255,.08);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);cursor:pointer;transition:background .3s,border-color .3s,transform .3s}
+.qbtn:hover{background:rgba(242,101,34,.22);border-color:var(--orange);transform:translateX(6px)}
+.qbtn[aria-expanded="true"]{background:rgba(242,101,34,.28);border-color:var(--orange);transform:none}
+.qbtn b{font-family:var(--mono);color:var(--orange);font-weight:500}
+.qbtn[aria-expanded="true"] b{color:var(--white)}
+.qbtn i{font-style:normal;font-size:1.4rem;line-height:1;justify-self:end;transition:transform .35s}
+.qbtn[aria-expanded="true"] i{transform:rotate(45deg)}
+.ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1)}
+.ans.open{grid-template-rows:1fr}
+.ans>div{overflow:hidden;min-height:0}
+.ans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding-top:14px}
+.quote{border:1px solid rgba(255,255,255,.35);border-radius:10px;background:rgba(20,22,41,.82);padding:20px;display:grid;gap:10px;align-content:start;min-width:0;opacity:0;transform:translateY(16px);transition:opacity .45s,transform .45s}
+.ans.open .quote{opacity:1;transform:none}
+.ans.open .quote:nth-child(2){transition-delay:.08s}.ans.open .quote:nth-child(3){transition-delay:.16s}
+.quote h4{margin:0;font-size:.98rem;line-height:1.35}
+.quote h4 span{display:block;font-weight:400;color:#AEB3CC;font-size:.85rem}
+.quote p{font-size:.95rem;color:#E9EAF3}
+.quote p::before{content:"“";color:var(--orange);font-family:var(--display);font-size:1.6rem;line-height:0;vertical-align:-.35em;margin-right:2px}
+.people{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:6px}
+.people span{font-family:var(--mono);font-size:.75rem;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.3);color:#E4E6F2;background:rgba(4,10,34,.5)}
+@media (max-width:760px){.ans-grid{grid-template-columns:1fr}}
+.qa .lede{color:#D5D8E8}
+
+/* persona */
+.persona{background:var(--orange);color:var(--white);border-radius:28px;overflow:hidden;position:relative}
+.persona-track{display:flex;transition:transform .7s cubic-bezier(.7,0,.2,1)}
+.persona-slide{flex:0 0 100%;padding:clamp(28px,5vw,64px);min-width:0}
+.p1{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.p1 h3{font-family:"IBM Plex Sans",sans-serif;font-weight:700;font-size:clamp(2.6rem,6vw,4.8rem);line-height:1;letter-spacing:.01em}
+.p1 .role{font-style:italic;font-weight:700;font-size:1.3rem;margin-top:14px}
+.p1 .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.p1 .meta span{background:rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-size:.88rem}
+.p1 img{width:100%;height:auto;max-width:360px;max-height:420px;object-fit:contain;justify-self:center;align-self:center;animation:float 6s ease-in-out infinite}
+.persona-slide.p1{align-items:center}
+@keyframes float{50%{transform:translateY(-10px)}}
+.slide-btn{margin-top:30px;display:inline-flex;align-items:center;gap:18px;background:rgba(255,255,255,.35);color:var(--white);font-family:"IBM Plex Sans",sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:.08em;border:0;border-radius:999px;padding:12px 28px;cursor:pointer;transition:background .2s,gap .3s}
+.slide-btn:hover{background:rgba(255,255,255,.5);gap:28px}
+.slide-btn svg{width:64px;height:20px;stroke:currentColor;fill:none;stroke-width:2.5}
+.p2{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:20px}
+.p2 .blk{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:22px;min-width:0}
+.p2 h4{margin:0 0 10px;font-family:var(--mono);font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy)}
+.p2 ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.95rem}
+.p2 .about{grid-row:span 2}
+.p2 .about p{font-size:.98rem}
+.p2 .about p+h4{margin-top:22px}
+.persona-nav{display:flex;gap:10px;justify-content:center;padding-bottom:22px}
+.persona-nav button{width:10px;height:10px;border-radius:999px;border:0;background:rgba(255,255,255,.4);cursor:pointer;padding:0;transition:width .3s,background .3s}
+.persona-nav button[aria-current="true"]{width:30px;background:var(--white)}
+.back-btn{background:transparent;border:2px solid rgba(255,255,255,.6);color:var(--white);border-radius:999px;padding:8px 18px;font-weight:700;cursor:pointer;margin-bottom:22px;font-family:var(--body)}
+@media (max-width:860px){.p1{grid-template-columns:1fr}.p2{grid-template-columns:1fr}.p2 .about{grid-row:auto}}
+
+/* heuristic explorer */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.tab{font-family:var(--body);font-weight:500;font-size:.92rem;padding:10px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--white);color:var(--ink);cursor:pointer;transition:all .2s}
+.tab:hover{border-color:var(--orange)}
+.tab[aria-selected="true"]{background:var(--orange);border-color:var(--orange);color:var(--white)}
+.band-navy .tab{background:transparent;color:#C7CBE0;border-color:rgba(255,255,255,.2)}
+.band-navy .tab[aria-selected="true"]{background:var(--orange);color:var(--white);border-color:var(--orange)}
+.heur{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(20px,3vw,40px);align-items:start}
+.browser{border-radius:14px;overflow:hidden;background:var(--white);border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(20,22,41,.45)}
+.browser .bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#F1ECE6;border-bottom:1px solid var(--line)}
+.browser .bar i{width:10px;height:10px;border-radius:50%;background:#D9CFC5}
+.browser .bar i:first-child{background:var(--orange)}
+.browser .bar span{margin-left:10px;font-family:var(--mono);font-size:.72rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.heur-img img{width:100%;height:auto;animation:fadeIn .5s ease}
+@keyframes fadeIn{from{opacity:0;transform:scale(1.02)}}
+.issues{display:grid;gap:14px;min-width:0}
+.issue{border:1.5px solid var(--indigo);border-radius:6px;background:var(--white);overflow:hidden;animation:slideIn .5s cubic-bezier(.2,.7,.2,1) both}
+.issue:nth-child(2){animation-delay:.1s}.issue:nth-child(3){animation-delay:.2s}
+@keyframes slideIn{from{opacity:0;transform:translateX(24px)}}
+.issue h4{margin:0;background:var(--orange);color:var(--white);font-style:italic;font-weight:500;font-size:1rem;padding:12px 18px}
+.issue p{padding:14px 18px;font-size:.95rem;color:var(--muted)}
+.issue.law h4{background:var(--indigo)}
+@media (max-width:860px){.heur{grid-template-columns:1fr}}
+
+/* insights */
+.insights{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.ins{min-height:200px;border-radius:12px;padding:44px 26px 26px;font-family:var(--body);font-weight:700;font-size:1.12rem;line-height:1.35;position:relative;transition:transform .9s cubic-bezier(.2,.8,.2,1),box-shadow .3s;min-width:0}
+.ins::before{content:"";position:absolute;top:14px;left:16px;width:30px;height:8px;background:radial-gradient(circle,currentColor 2.6px,transparent 3px) 0 0/10px 8px repeat-x;opacity:.35}
+.ins:nth-child(odd){background:var(--white);color:var(--ink)}
+.ins:nth-child(even){background:var(--orange);color:var(--white)}
+.ins:nth-child(4n+2),.ins:nth-child(4n+3){}
+.insights.scatter .ins:nth-child(1){transform:rotate(-5deg) translate(-12px,30px)}
+.insights.scatter .ins:nth-child(2){transform:rotate(4deg) translate(10px,-20px)}
+.insights.scatter .ins:nth-child(3){transform:rotate(-3deg) translate(-8px,40px)}
+.insights.scatter .ins:nth-child(4){transform:rotate(6deg) translate(16px,10px)}
+.insights.scatter .ins:nth-child(5){transform:rotate(3deg) translate(-14px,-24px)}
+.insights.scatter .ins:nth-child(6){transform:rotate(-6deg) translate(10px,20px)}
+.insights.scatter .ins:nth-child(7){transform:rotate(5deg) translate(-10px,-30px)}
+.insights.scatter .ins:nth-child(8){transform:rotate(-4deg) translate(12px,24px)}
+.ins:hover{transform:translateY(-6px) rotate(-1deg)!important;box-shadow:0 24px 40px -20px rgba(0,0,0,.6)}
+.ins small{display:block;margin-top:14px;font-family:var(--mono);font-weight:500;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;opacity:.65}
+@media (max-width:1000px){.insights{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.insights{grid-template-columns:1fr}}
+
+/* finding → change */
+.fc-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.fc{display:grid;gap:16px}
+.fc-row{display:grid;grid-template-columns:1fr 56px 1fr;align-items:stretch;gap:0;min-width:0}
+.fc-q,.fc-c{border-radius:14px;padding:20px 22px;display:grid;gap:10px;align-content:start;min-width:0}
+.fc-q{background:var(--white);border:1px solid var(--line)}
+.fc-q .who{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.fc-q p{font-style:italic;color:var(--ink)}
+.fc-q p::before{content:"“";color:var(--orange);font-family:var(--display);font-size:1.7rem;line-height:0;vertical-align:-.35em;margin-right:2px}
+.fc-arrow{display:grid;place-items:center;color:var(--orange)}
+.fc-arrow svg{width:40px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-dasharray:60;stroke-dashoffset:0;transition:stroke-dashoffset .8s .2s}
+.fc-row.pre .fc-arrow svg{stroke-dashoffset:60}
+.fc-c{background:var(--orange-soft);border:1px solid #F6C6A8}
+.fc-c h4{margin:0;font-size:1.02rem}
+.fc-c p{font-size:.94rem;color:#5B3A28}
+.fc-c.open{background:#F1EEF8;border-color:#D4CEEA}
+.fc-c.open p{color:#3E3A5C}
+.st{justify-self:start;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:6px}
+.st.done{background:var(--ok);color:#fff}
+.st.todo{background:var(--indigo);color:#fff}
+.fc-row[hidden]{display:none!important}
+.fc-sum{display:flex;flex-wrap:wrap;gap:18px;margin-top:26px;font-size:.95rem;color:var(--muted)}
+.fc-sum b{color:var(--ink);font-size:1.4rem;font-family:var(--display);font-weight:900;margin-right:6px}
+@media (max-width:760px){.fc-row{grid-template-columns:1fr}.fc-arrow{transform:rotate(90deg);height:36px}}
+/* round 2 plan */
+.plan{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,3vw,40px);align-items:start}
+.plan ol{margin:0;padding:0;list-style:none;display:grid;gap:10px;counter-reset:t}
+.plan ol li{counter-increment:t;display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--white)}
+.plan ol li::before{content:"T" counter(t);font-family:var(--mono);color:var(--orange);font-size:.85rem;padding-top:2px}
+.plan ol li span{display:block;color:var(--muted);font-size:.88rem}
+.metrics{display:grid;gap:12px}
+.metric{border-radius:14px;padding:18px 20px;background:var(--navy);color:#fff;display:grid;gap:4px}
+.metric b{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--orange)}
+.metric span{color:#C7CBE0;font-size:.92rem}
+.planned{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px;border:1.5px dashed var(--indigo);color:var(--indigo)}
+@media (max-width:860px){.plan{grid-template-columns:1fr}}
+
+/* IA */
+.ia-scroll{overflow-x:auto;padding-bottom:10px}
+.ia{min-width:980px;position:relative}
+.ia svg{width:100%;height:auto;display:block}
+.ia .node rect{rx:16;fill:#1E2433}
+.ia .node.root rect,.ia .node.hl rect{fill:var(--orange)}
+.ia .node text{fill:#fff;font-family:var(--body);font-weight:700;font-size:12px;text-anchor:middle;dominant-baseline:central}
+.ia .edge{fill:none;stroke:#8A8FA3;stroke-width:1.4;stroke-dasharray:400;stroke-dashoffset:0;transition:stroke-dashoffset 1.2s ease}
+.ia .node{transition:opacity .5s,transform .5s;transform-box:fill-box;transform-origin:center}
+.ia.pre .edge{stroke-dashoffset:400}
+.ia.pre .node{opacity:0;transform:scale(.8)}
+.ia-note{margin-top:18px;color:var(--muted);font-size:.92rem}
+
+/* before after */
+.ba-grid{display:grid;gap:clamp(48px,7vw,88px)}
+.ba{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(20px,3vw,40px);align-items:center}
+.ba h3{font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.1}
+.ba h3 small{display:block;font-size:.5em;opacity:.8;margin-top:6px}
+.compare{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:782/372;max-width:100%;background:#fff;box-shadow:0 30px 60px -30px rgba(0,0,0,.5);user-select:none;touch-action:pan-y;cursor:ew-resize}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.compare .after{clip-path:inset(0 0 0 var(--pos,50%))}
+.compare .handle{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:3px;background:var(--white);transform:translateX(-50%);box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.compare .handle::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--white);color:var(--orange);display:grid;place-items:center;font-weight:700;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.compare .lbl{position:absolute;top:12px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(4,10,34,.8);color:#fff}
+.compare .lbl.l{left:12px}.compare .lbl.r{right:12px;background:var(--orange)}
+.compare input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba-lists{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.ba-lists div{background:rgba(255,255,255,.12);border-radius:14px;padding:18px;min-width:0}
+.ba-lists h4{margin:0 0 8px;font-style:italic;font-size:1.05rem}
+.ba-lists ol{margin:0;padding-left:20px;display:grid;gap:8px;font-size:.93rem}
+.ba-lists .new{background:var(--white);color:var(--ink)}
+.ba-lists .new h4{color:var(--orange)}
+@media (max-width:900px){.ba{grid-template-columns:1fr}.ba-lists{grid-template-columns:1fr}}
+
+/* final design scroll frames */
+.finals{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.final{display:grid;gap:14px;min-width:0}
+.final .browser .viewport{height:min(70vh,620px);overflow:hidden;position:relative}
+.final .browser .viewport img{width:100%;height:auto;transition:transform 9s cubic-bezier(.45,0,.55,1)}
+.final:hover .viewport img,.final.auto .viewport img{transform:translateY(calc(-100% + min(70vh,620px)))}
+.final h3{font-family:var(--display);font-style:italic;font-weight:700;font-size:1.35rem}
+.final p{color:var(--muted);font-size:.95rem}
+.hint{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:860px){.finals{grid-template-columns:1fr}}
+
+/* prototype player */
+.proto{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(20px,3vw,36px);align-items:start}
+.proto .browser{background:#0B1230;border-color:rgba(255,255,255,.12)}
+.proto .browser .bar{background:#141C40;border-color:rgba(255,255,255,.1)}
+.proto .browser .bar i{background:#2A3360}
+.proto .browser .bar i:first-child{background:var(--orange)}
+.proto .browser .bar span{color:#9AA0C0}
+.screen{position:relative;aspect-ratio:1600/873;overflow:hidden;cursor:pointer;max-width:100%}
+.screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
+.screen img.out{opacity:0;transform:translateX(-4%)}
+.screen img.in-start{opacity:0;transform:translateX(4%)}
+.hot{position:absolute;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:rgba(255,255,255,.35);border:2px solid #fff;pointer-events:none;animation:pulse 1.6s ease-out infinite;transition:left .5s,top .5s}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}100%{box-shadow:0 0 0 22px rgba(255,255,255,0)}}
+.proto-ctrl{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;flex-wrap:wrap}
+.dots{display:flex;gap:8px}
+.dots button{width:34px;height:6px;border-radius:999px;border:0;background:rgba(255,255,255,.2);cursor:pointer;padding:0;transition:background .3s}
+.dots button[aria-current="true"]{background:var(--orange)}
+.arrows{display:flex;gap:8px}
+.arrows button{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:1.1rem;cursor:pointer;transition:all .2s}
+.arrows button:hover:not(:disabled){background:var(--orange);border-color:var(--orange)}
+.arrows button:disabled{opacity:.3;cursor:default}
+.note{background:var(--navy-2);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:26px;display:grid;gap:14px;min-width:0}
+.note .step{font-family:var(--mono);font-size:.78rem;color:var(--orange);letter-spacing:.1em;text-transform:uppercase}
+.note h3{font-family:var(--display);font-style:italic;font-weight:700;font-size:1.6rem;line-height:1.15}
+.note p{color:#C7CBE0}
+.note .tagline{display:grid;gap:10px}
+.pill{display:inline-block;justify-self:start;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:6px}
+.pill.ok{background:rgba(31,157,99,.18);color:#6EE0A8}
+.pill.fix{background:rgba(242,101,34,.18);color:#FFB089}
+.pill.ins{background:rgba(255,255,255,.1);color:#E4E6F2}
+.note .anim{animation:fadeUp .5s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}}
+.proto-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+@media (max-width:900px){.proto{grid-template-columns:1fr}}
+
+/* next */
+.next{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.next article{border-top:3px solid var(--orange);padding-top:18px;display:grid;gap:8px;align-content:start;min-width:0}
+.next h3{font-size:1.1rem}
+.next p{color:var(--muted);font-size:.95rem}
+@media (max-width:860px){.next{grid-template-columns:1fr}}
+
+/* closing */
+.closing{position:relative;overflow:hidden;background:var(--navy);color:var(--white);padding:0}
+.closing img{width:100%;height:auto;opacity:.9}
+.contact{background:var(--navy);color:var(--white)}
+.contact .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:end}
+.contact h2{font-family:var(--display);font-weight:900;font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.02}
+.contact h2 em{font-weight:400;color:var(--orange)}
+.links{display:grid;gap:12px}
+.links a,.copy{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;border-radius:14px;border:1px solid rgba(255,255,255,.15);text-decoration:none;color:#fff;background:rgba(255,255,255,.04);transition:background .2s,border-color .2s,transform .2s;font-family:var(--body);font-size:1rem;cursor:pointer;width:100%;text-align:left}
+.links a:hover,.copy:hover{background:rgba(242,101,34,.18);border-color:var(--orange);transform:translateX(4px)}
+.links span{font-family:var(--mono);font-size:.75rem;color:#9AA0C0;overflow-wrap:anywhere}
+.disclaimer{margin-top:56px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:.82rem;color:#8C92B0}
+@media (max-width:860px){.contact .wrap{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .rv.pre{opacity:1;transform:none}
+  .orbit.pre ellipse{stroke-dashoffset:0}
+  .insights.scatter .ins{transform:none!important}
+}
+</style>
+</head>
+<body>
+
+
+<nav class="nav" aria-label="Case study sections">
+  <div class="wrap">
+    <a class="brand" href="#top">Govind Patel<span>.</span></a>
+    <ul>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#problems">Problems</a></li>
+      <li><a href="#testing">Testing</a></li>
+      <li><a href="#insights">Insights</a></li>
+      <li><a href="#redesign">Redesign</a></li>
+      <li><a href="#prototype">Prototype</a></li>
+    </ul>
+    <a class="btn btn-primary btn-sm" href="#contact">Contact</a>
+  </div>
+  <div class="progress" id="progress"></div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="dots" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">Case study · Usability testing → UI redesign</p>
+      <h1>Redesigning Bank of Baroda Website</h1>
+      <p class="tag">USABILITY TESTING</p>
+      <p class="lede">I tested the existing website against SBI, HDFC and Axis, found where users get lost, and redesigned the homepage, navigation, loan application and fixed-deposit flows around those problems.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#prototype">Try the clickable flows →</a>
+        <a class="btn btn-ghost" href="https://www.figma.com/proto/cjl2SquZYihXplPixPgAXh/Usability-Testing?node-id=77-1724&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;page-id=50%3A636&amp;starting-point-node-id=77%3A1724&amp;show-proto-sidebar=1" target="_blank" rel="noopener">Open Figma prototype ↗</a>
+      </div>
+    </div>
+    <div class="tilt" id="tilt"><div class="tilt-inner" id="tiltInner"><img src="w/hero_mock.webp" alt="Redesigned Bank of Baroda landing hero shown on a tablet: 'Financial Freedom Starts Here' with card visuals" width="895" height="683"></div></div>
+  </div>
+  <div class="wrap">
+    <dl class="facts">
+      <div><dt>Role</dt><dd>UX research &amp; UI design (solo)</dd></div>
+      <div><dt>Scope</dt><dd>Home, navigation, loan &amp; FD flows</dd></div>
+      <div><dt>Methods</dt><dd>Competitive analysis, persona, heuristic evaluation, IA</dd></div>
+      <div><dt>Tools</dt><dd>Figma (design &amp; prototype)</dd></div>
+    </dl>
+  </div>
+</header>
+
+<section class="band-paper" id="overview">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">The short version</p>
+      <h2 class="orbit rv" data-orbit>In 30 seconds</h2>
+    </div>
+    <div class="tldr">
+      <article class="rv"><span class="k">Problem</span><h3>Key actions were buried</h3><p>Loan details, FD rates and login sat 3–4 levels deep behind banners, floating buttons and long menus. First-time users had no guidance.</p></article>
+      <article class="rv"><span class="k">Approach</span><h3>Test, benchmark, evaluate</h3><p>Five loan tasks tested with three participants (ages 26–42), a benchmark against three competitor banks, a persona, and a heuristic + UX-law audit of five key screens.</p></article>
+      <article class="rv"><span class="k">Outcome</span><h3>Guided 4-step flows</h3><p>A calmer homepage, grouped navigation, and stepper-based loan and FD flows that show rates, status and a full review before you commit.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="band-white">
+  <div class="wrap ctx">
+    <div class="photo rv" id="ctxPhoto"><img src="w/billboard.webp" alt="Bank of Baroda home loan billboard mock-up: 'Moving on helps. Literally'" loading="lazy" width="1600" height="1028"></div>
+    <div>
+      <p class="eyebrow rv">Context</p>
+      <h2 class="orbit rv" data-orbit>Bank of Baroda</h2>
+      <p class="rv" style="margin-top:18px">One of India’s largest public sector banks, second only to SBI in size and reach. Founded on 20 July 1908 by Maharaja Sayajirao Gaekwad III, it opened its first branch in Ahmedabad in 1910 and expanded to Kenya, Uganda, Tanzania and London in the 1950s.</p>
+      <p class="rv">It offers personal, corporate and NRI banking, which means its website serves a very wide range of people, from first-time account holders to experienced borrowers.</p>
+      <div class="facts-list rv"><span class="chip">Est. 1908</span><span class="chip">Public sector</span><span class="chip">Personal · Corporate · NRI</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band-orange">
+  <div class="wrap goal">
+    <h2 class="rv">The goal of<br>this project</h2>
+    <p class="rv">Identify usability problems in the existing Bank of Baroda website through user testing, and propose a redesigned interface that makes it simpler, clearer and easier to use.</p>
+  </div>
+</section>
+
+<section class="band-paper" id="research">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">Process</p>
+      <h2 class="orbit rv" data-orbit>How I worked</h2>
+    </div>
+    <ol class="steps" id="steps">
+      <li><a href="#competitive"><b>Competitive analysis</b><span>SBI, Axis, HDFC</span></a></li>
+      <li><a href="#questions"><b>Usability test</b><span>3 participants · 5 tasks</span></a></li>
+      <li><a href="#persona"><b>Persona</b><span>Keshav Singh</span></a></li>
+      <li><a href="#problems"><b>Heuristic evaluation</b><span>5 screens audited</span></a></li>
+      <li><a href="#insights"><b>Key insights</b><span>8 findings</span></a></li>
+      <li><a href="#ia"><b>Information architecture</b><span>Loan &amp; investment trees</span></a></li>
+      <li><a href="#redesign"><b>Redesign</b><span>Old vs new</span></a></li>
+      <li><a href="#prototype"><b>Flow review</b><span>Loan &amp; FD prototypes</span></a></li>
+    </ol>
+
+    <div class="sec-head" id="competitive" style="margin-top:96px">
+      <p class="eyebrow rv">Step 1</p>
+      <h2 class="orbit rv" data-orbit>Competitive Analysis</h2>
+      <p class="lede rv">Before redesigning anything, I benchmarked Bank of Baroda against leading public and private sector banks to find gaps in visual design, navigation structure and overall usability.</p>
+    </div>
+    <div class="comp">
+      <figure class="rv"><div class="shot"><img src="w/c_sbi.webp" alt="SBI homepage screenshot" loading="lazy" width="540" height="263"></div><figcaption style="color:#1B3A7A">SBI</figcaption></figure>
+      <figure class="rv"><div class="shot"><img src="w/c_axis.webp" alt="Axis Bank homepage screenshot" loading="lazy" width="540" height="261"></div><figcaption style="color:#97144D">Axis Bank</figcaption></figure>
+      <figure class="rv"><div class="shot"><img src="w/c_hdfc.webp" alt="HDFC Bank homepage screenshot" loading="lazy" width="540" height="259"></div><figcaption style="color:#1C4E8A">HDFC Bank</figcaption></figure>
+    </div>
+    <h3 class="sub-h rv">Key differences observed</h3>
+    <div class="diffs">
+      <div class="diff rv"><svg viewBox="0 0 48 48"><rect x="6" y="9" width="36" height="30" rx="4"/><path d="M13 18h8M13 24h14M13 30h6M31 18h4M31 24h4"/></svg><h3>Cluttered navigation</h3><p>Unlike SBI, HDFC and Axis, BoB’s navigation is unclear, which makes finding a service difficult.</p></div>
+      <div class="diff rv"><svg viewBox="0 0 48 48"><rect x="19" y="6" width="10" height="8" rx="2"/><rect x="6" y="34" width="10" height="8" rx="2"/><rect x="19" y="34" width="10" height="8" rx="2"/><rect x="32" y="34" width="10" height="8" rx="2"/><path d="M24 14v10M11 34v-6h26v6M24 24v10"/></svg><h3>Weak visual hierarchy</h3><p>Competitor sites guide users with clear action priorities. BoB’s layout lacks direction.</p></div>
+      <div class="diff rv"><svg viewBox="0 0 48 48"><rect x="6" y="10" width="36" height="28" rx="4"/><path d="M6 30l10-9 8 7 6-5 12 9"/><circle cx="33" cy="18" r="3"/></svg><h3>Ineffective hero section</h3><p>Others use bold hero images with clear CTAs. BoB’s carousel lacks focus and engagement.</p></div>
+      <div class="diff rv"><svg viewBox="0 0 48 48"><path d="M10 38V12M10 12h12M16 38V22"/><path d="M28 10l10 28M24 30h12"/></svg><h3>Inconsistent design</h3><p>BoB’s typography and icons feel dated next to the cohesive design systems of competitors.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="qa" id="questions">
+  <div class="qa-bg" id="qaBg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head center">
+      <p class="eyebrow rv">Step 2 · Usability test script</p>
+      <h2 class="orbit rv" data-orbit>Question / Answer</h2>
+      <p class="lede rv">Three participants of different ages and comfort levels worked through home-loan tasks on the live website. Click a question to read what each of them said.</p>
+      <div class="people rv"><span>Keshav S. · Software Engineer, 32</span><span>Madhavi P. · Marketing, 26</span><span>Renu S. · Homemaker, 42</span></div>
+    </div>
+    <ol class="qlist" id="qlist"></ol>
+  </div>
+</section>
+
+<section class="band-white" id="persona">
+  <div class="wrap">
+    <div class="sec-head center">
+      <p class="eyebrow rv">Step 3</p>
+      <h2 class="orbit rv" data-orbit>Personas</h2>
+    </div>
+    <div class="persona rv" id="persona-card">
+      <div class="persona-track" id="pTrack">
+        <div class="persona-slide p1" aria-label="Persona summary">
+          <div>
+            <h3>KESHAV<br>SINGH…</h3>
+            <p class="role">Software Engineer</p>
+            <div class="meta"><span>Age 32</span><span>Pune</span><span>Active home loan</span><span>OnePlus + laptop</span></div>
+            <button class="slide-btn" id="pNext" type="button">SLIDE <svg viewBox="0 0 64 20"><path d="M0 10h60M52 2l8 8-8 8"/></svg></button>
+          </div>
+          <img src="w/persona_photo.webp" alt="Portrait of persona Keshav Singh" loading="lazy" width="816" height="894">
+        </div>
+        <div class="persona-slide" aria-label="Persona details">
+          <button class="back-btn" id="pPrev" type="button">← Back</button>
+          <div class="p2">
+            <div class="blk about">
+              <h4>About</h4>
+              <p>A 32-year-old software engineer at a product startup in Pune. Lives alone in a rented apartment, manages his own finances and has an active home loan. Uses digital banking daily and rarely visits a branch.</p>
+              <h4>Tech use</h4>
+              <ul><li>Smartphone (OnePlus) and laptop</li><li>Comfortable with multiple banking apps</li><li>Uses GPay, PhonePe and net banking</li></ul>
+            </div>
+            <div class="blk"><h4>Daily routine</h4><ul><li>6:30 AM: wakes up, checks notifications</li><li>9 AM–6 PM: works remotely</li><li>Banking tasks during lunch breaks</li><li>Checks finances on the way to the gym (8 PM)</li><li>Pays bills or checks loan details on weekends</li></ul></div>
+            <div class="blk"><h4>Needs</h4><ul><li>Quick access to loan summary and EMI details</li><li>Tax certificates during ITR season</li><li>Part-payment without calling the bank</li><li>Values speed over aesthetics</li></ul></div>
+            <div class="blk"><h4>Frustrations</h4><ul><li>Deeply nested menus, inconsistent UI</li><li>No auto-refresh after a transaction</li><li>Logged out mid-session by short timeouts</li></ul></div>
+            <div class="blk"><h4>Motivation</h4><ul><li>Financial independence</li><li>Pay off his home loan early</li><li>Satisfaction from cutting principal with part-payments</li></ul></div>
+          </div>
+        </div>
+      </div>
+      <div class="persona-nav" role="tablist" aria-label="Persona pages"><button type="button" aria-label="Summary" aria-current="true" data-p="0"></button><button type="button" aria-label="Details" aria-current="false" data-p="1"></button></div>
+    </div>
+  </div>
+</section>
+
+<section class="band-paper" id="problems">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">Step 4 · Problems found</p>
+      <h2 class="orbit rv" data-orbit>Heuristic Evaluation</h2>
+      <p class="lede rv">I audited five key screens against Nielsen’s heuristics and common UX laws. Pick a screen to see what breaks.</p>
+    </div>
+    <div class="tabs" role="tablist" id="hTabs"></div>
+    <div class="heur">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span id="hUrl">bankofbaroda.in</span></div><div class="heur-img" id="hImg"></div></div>
+      <div class="issues" id="hIssues" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="band-navy" id="insights">
+  <div class="wrap">
+    <div class="sec-head center">
+      <p class="eyebrow rv">Step 5</p>
+      <h2 class="orbit rv" data-orbit>Key Insights</h2>
+      <p class="lede rv">Eight findings that shaped the redesign. The tag under each card shows where the new design answers it.</p>
+    </div>
+    <div class="insights scatter" id="ins">
+      <div class="ins">Navigation architecture is too deep. Key actions are buried 3–4 levels in.<small>→ Grouped navigation</small></div>
+      <div class="ins">Poor visual hierarchy makes loan details hard to scan at a glance.<small>→ Review cards</small></div>
+      <div class="ins">Banking jargon is used throughout with no contextual explanation or tooltip.<small>→ Plain labels</small></div>
+      <div class="ins">There is no interest-rate comparison for FD tenures, so users can’t make an informed choice.<small>→ FD step 2</small></div>
+      <div class="ins">Confirmation screens disappear with no way to retrieve the receipt later.<small>→ Final review step</small></div>
+      <div class="ins">The nominee step in the FD flow is easy to skip, and its legal importance is never explained.<small>→ FD step 3</small></div>
+      <div class="ins">Accessibility failures make the site hard to use for elderly and low-vision users.<small>→ Open for next round</small></div>
+      <div class="ins">The FD maturity summary lacks a breakdown, so users confirm without fully understanding.<small>→ FD step 4</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="band-paper" id="testing">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">Usability testing → design decisions</p>
+      <h2 class="orbit rv" data-orbit>Finding → Change</h2>
+      <p class="lede rv">Every change in the redesign traces back to something a participant struggled with in testing. Where I haven’t solved a problem yet, I say so.</p>
+    </div>
+    <div class="fc-filter" role="tablist" id="fcFilter">
+      <button class="tab" type="button" aria-selected="true" data-f="all">All findings</button>
+      <button class="tab" type="button" aria-selected="false" data-f="done">Addressed</button>
+      <button class="tab" type="button" aria-selected="false" data-f="todo">Still open</button>
+    </div>
+    <div class="fc" id="fc"></div>
+    <div class="fc-sum" id="fcSum"></div>
+  </div>
+</section>
+
+<section class="band-white" id="ia">
+  <div class="wrap">
+    <div class="sec-head center">
+      <p class="eyebrow rv">Step 6</p>
+      <h2 class="orbit rv" data-orbit>Information Architecture</h2>
+      <p class="lede rv">Two shallow trees replace the old maze: Loan and Investment, each ending in a 4-step guided process.</p>
+    </div>
+    <div class="ia-scroll"><div class="ia pre" id="iaTree"></div></div>
+    <p class="ia-note">Orange marks the two paths prototyped below.</p>
+  </div>
+</section>
+
+<section class="band-orange" id="redesign">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">Step 7 · A/B comparison</p>
+      <h2 class="orbit rv" data-orbit>Old vs New</h2>
+      <p class="lede rv">High-fidelity designs with a clean, minimal aesthetic. Drag the handle to compare.</p>
+    </div>
+    <div class="ba-grid">
+      <div class="ba">
+        <div class="compare rv" style="--pos:50%">
+          <img src="w/ab_old_vis.webp" alt="Old Bank of Baroda homepage crowded with banners and floating buttons" loading="lazy" width="782" height="372">
+          <img class="after" src="w/ab_new_vis.webp" alt="Redesigned homepage with a single clear hero and highlighted services" loading="lazy" width="782" height="372">
+          <span class="lbl l">Old</span><span class="lbl r">New</span><div class="handle"></div>
+          <input type="range" min="0" max="100" value="50" aria-label="Compare old and new homepage" id="cmp1">
+        </div>
+        <div>
+          <h3 class="rv">Visual design<small>Heuristic evaluations / UX laws</small></h3>
+          <div class="ba-lists rv">
+            <div><h4>Old version</h4><ol><li>Overwhelmed with banners, announcements and floating buttons.</li><li>Important actions and services aren’t clearly highlighted.</li><li>Floating CTAs on the right pull attention from the main content.</li></ol></div>
+            <div class="new"><h4>New version</h4><ol><li>A simpler structure that focuses on key offerings like bob World.</li><li>Save, invest, borrow and shop are highlighted with icons.</li><li>Action buttons are integrated without being intrusive.</li></ol></div>
+          </div>
+        </div>
+      </div>
+      <div class="ba">
+        <div class="compare rv" style="--pos:50%">
+          <img src="w/ab_old_use.webp" alt="Old login menu with long nested link lists" loading="lazy" width="782" height="372">
+          <img class="after" src="w/ab_new_use.webp" alt="New login dropdown grouped into Personal, Business and Loan" loading="lazy" width="782" height="372">
+          <span class="lbl l">Old</span><span class="lbl r">New</span><div class="handle"></div>
+          <input type="range" min="0" max="100" value="50" aria-label="Compare old and new login menu" id="cmp2">
+        </div>
+        <div>
+          <h3 class="rv">Usability<small>Heuristic evaluations / UX laws</small></h3>
+          <div class="ba-lists rv">
+            <div><h4>Old version</h4><ol><li>Long, nested menus are hard to scan.</li><li>Critical actions like login are buried in long lists.</li><li>Too many links and banners compete for attention and raise cognitive load.</li></ol></div>
+            <div class="new"><h4>New version</h4><ol><li>Cleaner dropdowns with grouped categories improve findability.</li><li>Login, help and language switch are where users expect them.</li><li>More spacing reduces confusion.</li></ol></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band-paper" id="final">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">Final design</p>
+      <h2 class="orbit rv" data-orbit>Final Design</h2>
+      <p class="lede rv">Two full pages from the redesign. Hover (or tap) a frame to scroll through it.</p>
+    </div>
+    <div class="finals">
+      <div class="final rv" tabindex="0">
+        <div class="browser"><div class="bar"><i></i><i></i><i></i><span>Homepage</span></div><div class="viewport"><img src="w/new_home.webp" alt="Full redesigned homepage: payments hero, Financial Freedom section, services and footer" loading="lazy" width="1000" height="3069"></div></div>
+        <h3>Homepage</h3><p>One focused hero, trust signals up front, and services grouped by intent.</p>
+      </div>
+      <div class="final rv" tabindex="0">
+        <div class="browser"><div class="bar"><i></i><i></i><i></i><span>Dashboard · Investment</span></div><div class="viewport"><img src="w/new_dash.webp" alt="Redesigned financial overview: account card, quick actions, transactions, goals and investment options" loading="lazy" width="1000" height="2580"></div></div>
+        <h3>Financial overview &amp; investments</h3><p>Balance, quick actions, recent transactions and goals on one screen, with FD, RD and mutual funds a click away.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band-navy" id="prototype">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">Step 8 · Interactive</p>
+      <h2 class="orbit rv" data-orbit>Task Flows</h2>
+      <p class="lede rv">Click the screen (or press → ) to move through each flow, the way a tester would. The panel shows my review notes for each step.</p>
+    </div>
+    <div class="tabs" role="tablist" id="fTabs">
+      <button class="tab" role="tab" aria-selected="true" data-flow="loan" type="button">Flow 1 · Personal loan</button>
+      <button class="tab" role="tab" aria-selected="false" data-flow="fd" type="button">Flow 2 · Fixed deposit</button>
+    </div>
+    <div class="proto">
+      <div>
+        <div class="browser">
+          <div class="bar"><i></i><i></i><i></i><span id="pUrl">bankofbaroda.in/loan/apply</span></div>
+          <div class="screen" id="screen" role="button" tabindex="0" aria-label="Advance to next screen"><span class="hot" id="hot"></span></div>
+        </div>
+        <div class="proto-ctrl">
+          <div class="dots" id="pDots"></div>
+          <div class="arrows"><button type="button" id="pBack" aria-label="Previous screen">←</button><button type="button" id="pFwd" aria-label="Next screen">→</button></div>
+        </div>
+      </div>
+      <aside class="note" id="pNote" aria-live="polite"></aside>
+    </div>
+  </div>
+</section>
+
+<section class="band-paper" id="round2">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="planned rv">Planned · round 2</span>
+      <h2 class="orbit rv" data-orbit>Testing the Redesign</h2>
+      <p class="lede rv">Round 1 tested the live website. Round 2 puts the redesigned prototype in front of five new participants, including at least two aged 40+, to check whether the changes above actually fixed the problems.</p>
+    </div>
+    <div class="plan">
+      <ol class="rv">
+        <li><div><b>Find your active home loan</b><span>Retests Q1: is “Loan” at the top level findable without guessing?</span></div></li>
+        <li><div><b>Check your eligibility and pick a loan</b><span>Do the live calculator and the side-by-side loan cards make the choice clear?</span></div></li>
+        <li><div><b>Upload documents and submit</b><span>Does the stepper and “Uploaded” status reduce anxiety?</span></div></li>
+        <li><div><b>Open a 1-year fixed deposit with a nominee</b><span>Do users compare rates, and does anyone skip the nominee?</span></div></li>
+        <li><div><b>Explain what happens after you confirm</b><span>Retests Q5: do the review and verification screens make the outcome clear?</span></div></li>
+      </ol>
+      <div class="metrics rv">
+        <div class="metric"><b>Task success</b><span>Completed without help, per task</span></div>
+        <div class="metric"><b>Time on task</b><span>Compared with round 1 on the same tasks</span></div>
+        <div class="metric"><b>Ease rating (SEQ)</b><span>1–7 after each task</span></div>
+        <div class="metric"><b>Confidence before confirming</b><span>“How sure are you this did what you meant?” 1–5</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band-white" id="next">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">What’s next</p>
+      <h2 class="orbit rv" data-orbit>Next Iteration</h2>
+      <p class="lede rv">My own review of the flows already flagged gaps. These are what I would test and fix next.</p>
+    </div>
+    <div class="next">
+      <article class="rv"><h3>Show FD limits up front</h3><p>The Create FD screen doesn’t show the minimum or maximum amount. Add the range and inline validation.</p></article>
+      <article class="rv"><h3>Accessibility pass</h3><p>Check contrast on the orange backgrounds, text size and keyboard order, since elderly and low-vision users struggled most.</p></article>
+      <article class="rv"><h3>Fix the naming</h3><p>Rename “Provisional Interest Certificate” to the words people search for, “Tax certificate”, with the formal name underneath.</p></article>
+    </div>
+  </div>
+</section>
+
+<div class="closing"><img src="w/billboard.webp" alt="" loading="lazy" width="1600" height="1028"></div>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Hiring for UX / product design?</p>
+      <h2>Let’s talk about <em>your</em> product.</h2>
+      <p class="lede" style="margin-top:18px">I’m Govind Patel, a UI/UX designer in Pune. I’m pursuing an M.Des in UI/UX and previously designed e-learning experiences at Tata Technologies.</p>
+    </div>
+    <div class="links">
+      <button class="copy" type="button" id="copyMail">govindsdesign@gmail.com <span id="copyLbl">Copy email</span></button>
+      <a href="https://www.linkedin.com/in/govind-patel-53023629a/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+      <a href="https://www.behance.net/govindpatel2003" target="_blank" rel="noopener">Behance <span>↗</span></a>
+      <a href="https://www.figma.com/design/cjl2SquZYihXplPixPgAXh/Usability-Testing?node-id=50-636" target="_blank" rel="noopener">Figma file <span>↗</span></a>
+    </div>
+  </div>
+  <div class="wrap"><p class="disclaimer">Concept project for my portfolio. Not affiliated with or endorsed by Bank of Baroda. Brand names and logos belong to their owners, and competitor screenshots are shown for research comparison.</p></div>
+</section>
+
+<script>
+(function(){
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* orbit svg injection */
+document.querySelectorAll('[data-orbit]').forEach(h=>{
+  const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  s.setAttribute('viewBox','0 0 200 100');s.setAttribute('preserveAspectRatio','none');s.setAttribute('aria-hidden','true');
+  s.innerHTML='<ellipse cx="100" cy="52" rx="96" ry="40" transform="rotate(-7 100 52)" pathLength="1000" vector-effect="non-scaling-stroke"/><circle cx="183" cy="22" r="3.2"/>';
+  h.appendChild(s);
+});
+
+/* reveal: only hide what is below the fold at load, so the first frame is complete */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+const vh=innerHeight;
+document.querySelectorAll('.rv,[data-orbit],#steps,#ctxPhoto,#iaTree').forEach(el=>{
+  if(reduce){el.classList.remove('pre');el.classList.add('in');return}
+  if(el.getBoundingClientRect().top>vh*0.9){ if(el.id!=='iaTree') el.classList.add('pre'); io.observe(el);} else {el.classList.add('in'); if(el.id==='iaTree') el.classList.remove('pre');}
+});
+
+/* insights settle */
+const ins=document.getElementById('ins');
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>ins.classList.remove('scatter'),250);o.disconnect()}}),{threshold:.3}).observe(ins);
+
+/* scroll progress + active nav + parallax */
+const prog=document.getElementById('progress'),links=[...document.querySelectorAll('.nav ul a')],qaBg=document.getElementById('qaBg'),qa=document.getElementById('questions');
+function onScroll(){
+  const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  let cur=null;links.forEach(a=>{const s=document.querySelector(a.getAttribute('href'));if(s&&s.getBoundingClientRect().top<140)cur=a});
+  links.forEach(a=>a.classList.toggle('on',a===cur));
+  if(!reduce){const r=qa.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight){qaBg.style.transform='scale(1.15) translateY('+(r.top*-0.12)+'px)'}}
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* hero tilt */
+const tilt=document.getElementById('tilt'),ti=document.getElementById('tiltInner');
+if(!reduce){tilt.addEventListener('pointermove',e=>{const r=tilt.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;ti.style.animation='none';ti.style.transform=`rotateY(${x*14}deg) rotateX(${-y*10}deg)`});tilt.addEventListener('pointerleave',()=>{ti.style.transform='';ti.style.animation=''})}
+
+/* hero dotted wave canvas */
+const cv=document.getElementById('dots'),cx=cv.getContext('2d');let W,H,t=0,dpr=Math.min(devicePixelRatio||1,2);
+function size(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+size();addEventListener('resize',size);
+function draw(){
+  cx.clearRect(0,0,W,H);
+  const cols=Math.ceil(W/22),rows=26;
+  for(let j=0;j<rows;j++){
+    const band=j<rows/2?0:1;
+    for(let i=0;i<cols;i++){
+      const x=i*22+ (j%2)*11;
+      const base=band?H*0.78:H*0.12;
+      const y=base+Math.sin(i*0.18+t+j*0.35)*26+Math.cos(i*0.07-t*0.6)*18+(j%13)*8;
+      const depth=(j%13)/13;
+      const r=0.6+depth*2.6*(0.6+0.4*Math.sin(i*0.3+t));
+      cx.fillStyle=`rgba(242,101,34,${0.12+depth*0.55})`;
+      cx.beginPath();cx.arc(x,y,Math.max(.3,r),0,6.283);cx.fill();
+    }
+  }
+  t+=0.012; if(!reduce) requestAnimationFrame(draw);
+}
+draw();
+
+/* Q&A accordion — answers from the Figma presentation prototype */
+const QA=[
+ ['How easy was it to locate your active loan on the dashboard after logging in?',
+  ['The loan was visible but buried under ‘My Accounts’. I expected a dedicated Loans section right on the home screen.',
+   'It took me a moment. The dashboard shows account numbers, not loan types. I had to guess which one was my home loan.',
+   'I couldn’t find my loan at all on the first attempt. The icons are too small and everything looks the same to me.']],
+ ['Were the loan details (remaining balance, interest rate and next EMI date) clearly displayed?',
+  ['Balance was visible but the interest rate wasn’t shown on the summary. I had to open a sub-page to find it.',
+   'The EMI date was there, but the remaining balance had too many decimal places. A cleaner format would help.',
+   'I couldn’t read the numbers easily. The font is too small and gray on white, very poor contrast for my eyes.']],
+ ['How did you find the process of generating a provisional interest certificate or repayment schedule?',
+  ['The certificate option was under ‘Loans’ → ‘Services’ → ‘Tax’. Three taps too deep. Needs to be more accessible.',
+   'I eventually found it, but I was looking for ‘Tax Certificate’ not ‘Provisional Interest Certificate’. The naming confused me.',
+   'I gave up trying. I would have called customer care instead. The menu has so many options, I got lost.']],
+ ['How easy was it to initiate a part-payment or pre-payment to reduce the principal?',
+  ['The part-payment option was present but the minimum payment amount wasn’t shown upfront. I had to read the fine print.',
+   'I found ‘Make Payment’ but couldn’t tell if it was for EMI or part-payment. The labels need clearer distinction.',
+   'I did not try this task because I was not confident I wouldn’t make an error and lose money by mistake.']],
+ ['Was the confirmation receipt clear? Did the updated projected tenure make sense to you?',
+  ['The receipt was there but it was plain text with no visual summary. I had to calculate if my new tenure made sense.',
+   'The updated tenure was shown, but as a date rather than ‘X months reduced’. A comparison view would be better.',
+   'I didn’t receive any screen confirmation, just a ‘Transaction Successful’ message. I don’t know if tenure changed.']]
+];
+const PEOPLE=[['Keshav S.','Software Engineer, 32'],['Madhavi P.','Marketing, 26'],['Renu S.','Homemaker, 42']];
+const ql=document.getElementById('qlist');
+ql.innerHTML=QA.map((q,i)=>`<li class="rv"><button class="qbtn" type="button" aria-expanded="false" aria-controls="ans${i}" id="q${i}"><b>Q${i+1}</b><span>${q[0]}</span><i aria-hidden="true">+</i></button><div class="ans" id="ans${i}" role="region" aria-labelledby="q${i}"><div><div class="ans-grid">${q[1].map((a,j)=>`<div class="quote"><h4>${PEOPLE[j][0]}<span>${PEOPLE[j][1]}</span></h4><p>${a}</p></div>`).join('')}</div></div></div></li>`).join('');
+ql.querySelectorAll('.qbtn').forEach(b=>b.addEventListener('click',()=>{
+  const open=b.getAttribute('aria-expanded')==='true';
+  ql.querySelectorAll('.qbtn').forEach(o=>{o.setAttribute('aria-expanded','false');o.nextElementSibling.classList.remove('open')});
+  if(!open){b.setAttribute('aria-expanded','true');b.nextElementSibling.classList.add('open')}
+}));
+ql.querySelector('.qbtn').click();
+
+/* finding → change */
+const FC=[
+ ['Keshav S.','Q1','The loan was visible but buried under ‘My Accounts’. I expected a dedicated Loans section.','done','Loan is now a top-level tab','The navigation is grouped into Personal, Business, Corporate, Loan and Investment, so loans are one click from anywhere.'],
+ ['Renu S.','Q1','I couldn’t find my loan at all. The icons are too small and everything looks the same to me.','done','Labelled quick actions','The dashboard uses larger icons with text labels (Download statement, Fund transfer, Pay bills) instead of icon-only links.'],
+ ['Keshav S.','Q2','The interest rate wasn’t shown on the summary. I had to open a sub-page to find it.','done','Rate shown where decisions are made','FD step 2 compares tenures with their rates and estimated return, and the final review repeats the rate.'],
+ ['Renu S.','Q2','The font is too small and gray on white, very poor contrast for my eyes.','todo','Accessibility pass','Not solved yet. The redesign uses bigger type, but white-on-orange contrast still needs checking for low-vision users.'],
+ ['Renu S.','Q3','I gave up trying. The menu has so many options, I got lost.','done','Grouped login and service menus','The long nested link list is replaced by a short dropdown grouped by Personal, Business and Loan.'],
+ ['Madhavi P.','Q3','I was looking for ‘Tax Certificate’, not ‘Provisional Interest Certificate’. The naming confused me.','todo','Use the words users search for','Not designed yet. Next step: rename to “Tax certificate” and add a one-line explanation of the formal name.'],
+ ['Renu S.','Q4','I did not try this task because I was not confident I wouldn’t make an error and lose money.','done','Review before you commit','Both flows end in a full review screen (amount, tenure, rate, nominee) with an explicit confirm step.'],
+ ['Keshav S.','Q4','The minimum payment amount wasn’t shown upfront. I had to read the fine print.','todo','Show limits upfront','Still open. The new Create FD screen repeats this mistake (no min/max), so it’s first on the fix list.'],
+ ['Keshav S.','Q5','The receipt was plain text with no visual summary. I had to calculate if my new tenure made sense.','done','Structured summary','The FD final review lays out every value in a scannable list instead of a block of text.'],
+ ['Renu S.','Q5','I didn’t receive any screen confirmation, just ‘Transaction Successful’.','done','A clear end state','The loan flow ends on a verification screen that says what happens next: an agent will call once it’s verified.']
+];
+const fcEl=document.getElementById('fc');
+fcEl.innerHTML=FC.map(f=>`<div class="fc-row rv" data-s="${f[3]}"><div class="fc-q"><span class="who">${f[0]} · ${f[1]}</span><p>${f[2]}</p></div><div class="fc-arrow" aria-hidden="true"><svg viewBox="0 0 40 16"><path d="M0 8h36M29 2l7 6-7 6"/></svg></div><div class="fc-c ${f[3]==='todo'?'open':''}"><span class="st ${f[3]}">${f[3]==='done'?'Addressed in redesign':'Still open'}</span><h4>${f[4]}</h4><p>${f[5]}</p></div></div>`).join('');
+const nd=FC.filter(f=>f[3]==='done').length;
+document.getElementById('fcSum').innerHTML=`<span><b>${FC.length}</b>findings from 3 participants</span><span><b>${nd}</b>addressed in the redesign</span><span><b>${FC.length-nd}</b>still open</span>`;
+if(!reduce){fcEl.querySelectorAll('.fc-row').forEach(r=>{if(r.getBoundingClientRect().top>innerHeight*0.9){r.classList.add('pre');io.observe(r)}})}
+document.querySelectorAll('#fcFilter .tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('#fcFilter .tab').forEach(o=>o.setAttribute('aria-selected',o===t));
+  fcEl.querySelectorAll('.fc-row').forEach(r=>{r.hidden=!(t.dataset.f==='all'||r.dataset.s===t.dataset.f);r.classList.remove('pre')});
+}));
+
+/* persona slider */
+const track=document.getElementById('pTrack'),pdots=[...document.querySelectorAll('.persona-nav button')];
+function pgo(n){track.style.transform=`translateX(${-100*n}%)`;pdots.forEach((d,i)=>d.setAttribute('aria-current',i===n))}
+document.getElementById('pNext').onclick=()=>pgo(1);document.getElementById('pPrev').onclick=()=>pgo(0);
+pdots.forEach(d=>d.onclick=()=>pgo(+d.dataset.p));
+
+/* heuristic explorer */
+const H_DATA=[
+ {k:'Home page',url:'bankofbaroda.in',img:'h_home',issues:[['Consistency and standards','Inconsistent colours, fonts and buttons throughout the website create a confusing experience.'],['Match between system and real world','Help and error options blend into the banner, so users can’t see or tell them apart.']]},
+ {k:'Login options',url:'bankofbaroda.in · login menu',img:'h_login',issues:[['Aesthetic and minimalist design','Options are unclear because of clutter, and none of them has a description.']]},
+ {k:'Loan screen',url:'bankofbaroda.in/loans/home-loan',img:'h_loan',issues:[['Flexibility and efficiency of use','There is no guidance for new users, so they may feel lost on a first visit.']]},
+ {k:'Loan process',url:'bobworld · loan application',img:'h_process',issues:[['Visibility of system status','The form doesn’t show users which step they are on or how many are left.']]},
+ {k:'Fixed deposit',url:'bankofbaroda.in/deposits/term-deposit',img:'h_fd',issues:[['Consistency and standards','The “Open FD” button looks different on the homepage and inside net banking.'],['Flexibility and efficiency of use','Experienced users can’t re-invest a matured FD in one click. Everyone goes through the same 7 steps every time.'],['The Zeigarnik effect','If the FD process is interrupted (for example by a session timeout), progress isn’t saved, so users start from zero and drop off.',1],['Jakob’s law','A non-standard date picker or interest-rate slider that doesn’t behave like modern apps makes the interface feel broken.',1],['Tesler’s law','Users are left to work out the maturity date and TDS themselves. The system should absorb that complexity and show post-tax profit instantly.',1]]}
+];
+const hT=document.getElementById('hTabs'),hI=document.getElementById('hImg'),hS=document.getElementById('hIssues'),hU=document.getElementById('hUrl');
+H_DATA.forEach((d,i)=>{const b=document.createElement('button');b.className='tab';b.type='button';b.role='tab';b.textContent=d.k;b.onclick=()=>hShow(i);hT.appendChild(b)});
+function hShow(i){
+  const d=H_DATA[i];[...hT.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+  hU.textContent=d.url;hI.innerHTML=`<img src="w/${d.img}.webp" alt="Old Bank of Baroda ${d.k.toLowerCase()} screenshot">`;
+  hS.innerHTML=d.issues.map(x=>`<div class="issue${x[2]?' law':''}"><h4>${x[0]}</h4><p>${x[1]}</p></div>`).join('');
+}
+hShow(0);
+
+/* IA tree */
+(function(){
+  const N={home:[490,30,'HOME','root'],loan:[250,110,'Loan'],inv:[730,110,'Investment'],
+    pl:[90,200,'Personal Loan','hl'],bl:[250,200,'Business Loan'],al:[410,200,'Auto Loan'],
+    rd:[580,200,'Recurring Deposit'],fd:[740,200,'FD Deposit','hl'],mf:[900,200,'Mutual Fund'],
+    lc:[30,300,'Loan Calculator'],cl:[150,300,'Choose Loan'],ud:[270,300,'Upload Document'],rv1:[390,300,'Review'],
+    fdl:[570,300,'Fill Detail'],cir:[690,300,'Choose Interest Rate'],nd:[820,300,'Nominee Detail'],rv2:[930,300,'Review']};
+  const E=[['home','loan'],['home','inv'],['loan','pl'],['loan','bl'],['loan','al'],['inv','rd'],['inv','fd'],['inv','mf'],['pl','lc'],['pl','cl'],['pl','ud'],['pl','rv1'],['fd','fdl'],['fd','cir'],['fd','nd'],['fd','rv2']];
+  let s='<svg viewBox="-40 0 1040 340" role="img" aria-label="Information architecture: Home splits into Loan and Investment. Loan has Personal, Business and Auto loan; Personal loan runs Loan Calculator, Choose Loan, Upload Document, Review. Investment has Recurring Deposit, FD Deposit and Mutual Fund; FD runs Fill Detail, Choose Interest Rate, Nominee Detail, Review.">';
+  E.forEach(([a,b],i)=>{const A=N[a],B=N[b],my=(A[1]+B[1])/2;s+=`<path class="edge" style="transition-delay:${i*0.06}s" d="M${A[0]} ${A[1]+14} V${my} H${B[0]} V${B[1]-14}"/>`});
+  Object.values(N).forEach((n,i)=>{const w=Math.max(84,n[2].length*7.4+26);s+=`<g class="node ${n[3]||''}" style="transition-delay:${0.2+i*0.05}s"><rect x="${n[0]-w/2}" y="${n[1]-14}" width="${w}" height="28" rx="14"/><text x="${n[0]}" y="${n[1]}">${n[2]}</text></g>`});
+  s+='</svg>';document.getElementById('iaTree').innerHTML=s;
+})();
+
+/* compare sliders */
+document.querySelectorAll('.compare').forEach(c=>{const inp=c.querySelector('input');const set=v=>c.style.setProperty('--pos',v+'%');inp.addEventListener('input',()=>set(inp.value));
+  if(!reduce){new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){o.disconnect();let v=50,dir=1,n=0;const iv=setInterval(()=>{v+=dir*2;if(v>=78||v<=22){dir*=-1;n++}set(v);inp.value=v;if(n>=2&&Math.abs(v-50)<2){clearInterval(iv);set(50);inp.value=50}},16);inp.addEventListener('pointerdown',()=>clearInterval(iv),{once:true})}}),{threshold:.6}).observe(c)}
+});
+
+/* final frames: tap to toggle scroll */
+document.querySelectorAll('.final').forEach(f=>{f.addEventListener('click',()=>f.classList.toggle('auto'));f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();f.classList.toggle('auto')}})});
+
+/* prototype player */
+const FLOWS={
+ loan:{url:'bankofbaroda.in/loan/apply',steps:[
+  {img:'s1',hot:[.83,.73],t:'Check eligibility',s:'Step 1 of 4',p:'Income, tenure and existing EMIs on sliders, with the eligible amount and EMI updating live on the right.',tags:[['ok','First review'],'A numbered 1–4 stepper keeps Miller’s law in check, so the user never faces the whole form at once.']},
+  {img:'s2',hot:[.25,.6],t:'Compare and choose a loan',s:'Step 2 of 4',p:'Three loan products side by side, each with its key features, so the choice doesn’t need a phone call.',tags:[['ins','Answers insight'],'Poor visual hierarchy made loan details hard to scan.']},
+  {img:'s3',hot:[.5,.9],t:'Upload documents',s:'Step 3 of 4',p:'KYC, income proof and property documents each get their own drop zone with a visible status.',tags:[['ok','Third review'],'The green “Uploaded” status gives immediate visibility of system status (H1) and reduces anxiety during upload.']},
+  {img:'s4',hot:[.5,.88],t:'Final application review',s:'Step 4 of 4',p:'Loan, documents and personal details split into three cards before submitting.',tags:[['ok','Second review'],'Three distinct cards make it very easy to scan and find specific details.']},
+  {img:'s5',hot:[.5,.84],t:'Loan under verification',s:'Done',p:'A clear end state that says what happens next: an agent will call once verification is done.',tags:[['ins','Answers insight'],'Confirmation screens used to disappear without telling users what comes next.']}
+ ]},
+ fd:{url:'bankofbaroda.in/deposits/fd/new',steps:[
+  {img:'f1',hot:[.5,.86],t:'Create your fixed deposit',s:'Step 1 of 4',p:'Amount, source account and tenure, kept to three inputs.',tags:[['fix','Open issue'],'This screen doesn’t show the minimum or maximum FD amount. That’s first on my fix list.']},
+  {img:'f2',hot:[.5,.86],t:'Compare interest rates and tenures',s:'Step 2 of 4',p:'Tenure options with their rates, and the estimated return calculated for you.',tags:[['ins','Answers insight'],'Interest-rate comparison was missing, and Tesler’s law says the system should do the maths.']},
+  {img:'f3',hot:[.5,.86],t:'Nominee details',s:'Step 3 of 4',p:'Nominee gets a dedicated step instead of an easy-to-skip field.',tags:[['ins','Answers insight'],'The nominee step was easy to skip and its legal importance was never explained.']},
+  {img:'f4',hot:[.5,.86],t:'Final review and confirm',s:'Step 4 of 4',p:'Source account, amount, tenure, rate, estimated return and nominee in one summary before committing.',tags:[['ok','Third review'],'All the decision-ready data sits in one list, which reduces anxiety before a major financial commitment.'],extra:[['ok','First review'],'Bank of Baroda orange and one grid system are used consistently across every screen.']}
+ ]}
+};
+let flow='loan',idx=0;const scr=document.getElementById('screen'),hot=document.getElementById('hot'),note=document.getElementById('pNote'),pd=document.getElementById('pDots'),pb=document.getElementById('pBack'),pf=document.getElementById('pFwd'),pu=document.getElementById('pUrl');
+Object.values(FLOWS).forEach(f=>f.steps.forEach(s=>{const i=new Image();i.src='w/'+s.img+'.webp'}));
+function render(dir){
+  const F=FLOWS[flow],st=F.steps[idx];pu.textContent=F.url;
+  const old=scr.querySelector('img');const im=document.createElement('img');im.src='w/'+st.img+'.webp';im.alt=st.t+' screen';
+  if(old&&!reduce){im.className='in-start';scr.insertBefore(im,hot);requestAnimationFrame(()=>requestAnimationFrame(()=>{im.className='';old.classList.add('out');setTimeout(()=>old.remove(),560)}))}else{if(old)old.remove();scr.insertBefore(im,hot)}
+  hot.style.left=st.hot[0]*100+'%';hot.style.top=st.hot[1]*100+'%';
+  pd.innerHTML=F.steps.map((_,i)=>`<button type="button" aria-label="Screen ${i+1}" aria-current="${i===idx}" data-i="${i}"></button>`).join('');
+  pd.querySelectorAll('button').forEach(b=>b.onclick=()=>{idx=+b.dataset.i;render()});
+  pb.disabled=idx===0;pf.disabled=idx===F.steps.length-1;
+  const tg=[st.tags].concat(st.extra?[st.extra]:[]);
+  note.innerHTML=`<div class="anim"><p class="step">${st.s}</p></div><h3 class="anim">${st.t}</h3><p class="anim">${st.p}</p>`+tg.map(x=>`<div class="tagline anim"><span class="pill ${x[0][0]}">${x[0][1]}</span><p>${x[1]}</p></div>`).join('')+
+   (idx===F.steps.length-1?`<div class="proto-links anim"><button class="btn btn-ghost btn-sm" type="button" id="restart">↺ Restart</button><button class="btn btn-primary btn-sm" type="button" id="other">Try the ${flow==='loan'?'FD':'loan'} flow →</button></div>`:'');
+  const r=document.getElementById('restart');if(r){r.onclick=()=>{idx=0;render()};document.getElementById('other').onclick=()=>setFlow(flow==='loan'?'fd':'loan')}
+}
+function step(d){const n=idx+d;if(n<0||n>=FLOWS[flow].steps.length)return;idx=n;render(d)}
+function setFlow(f){flow=f;idx=0;document.querySelectorAll('#fTabs .tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.flow===f));render()}
+document.querySelectorAll('#fTabs .tab').forEach(t=>t.onclick=()=>setFlow(t.dataset.flow));
+scr.onclick=()=>{if(idx<FLOWS[flow].steps.length-1)step(1);else{idx=0;render()}};
+scr.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();scr.click()}};
+pb.onclick=()=>step(-1);pf.onclick=()=>step(1);
+addEventListener('keydown',e=>{const r=document.getElementById('prototype').getBoundingClientRect();if(r.top<innerHeight*0.6&&r.bottom>innerHeight*0.4){if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)}});
+render();
+
+/* copy email */
+document.getElementById('copyMail').onclick=()=>{const l=document.getElementById('copyLbl');const done=()=>{l.textContent='Copied ✓';setTimeout(()=>l.textContent='Copy email',1800)};
+  try{navigator.clipboard.writeText('govindsdesign@gmail.com').then(done,()=>{l.textContent='Select & copy'})}catch(e){l.textContent='Select & copy'}};
+})();
+</script>
+
+</body>
+</html>
